@@ -1,6 +1,6 @@
 ## AppTrackPro
 
-![AppTrackPro Logo](assets/app_icon.ico)
+![AppTrackPro Logo](assets/app_icon.png)
 
 ### Table of Contents
 - [Overview](#overview)
