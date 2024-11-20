@@ -1,0 +1,11 @@
+# Exclude the virtual environment
+venv/
+# Exclude PyInstaller build artifacts
+build/
+dist/
+*.spec
+# Exclude Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
