@@ -9,27 +9,24 @@ import json
 import webbrowser
 import shutil
 from PIL import Image, ImageTk
-from tkinterdnd2 import DND_FILES, TkinterDnD  # Use tkinterdnd2 for drag-and-drop functionality
-from config.settings_manager import CONFIG_JSON_PATH, default_config, save_theme, SPREADSHEET_ID, ENABLE_GOOGLE_SYNC, \
+from tkinterdnd2 import DND_FILES, TkinterDnD
+from config.settings_manager import default_config, save_theme, SPREADSHEET_ID, ENABLE_GOOGLE_SYNC, \
     ASSETS_DIR
 
 # Import configuration settings from settings_manager.py
 from config.settings_manager import (
-    ICON_PATH,
     PERSONAL_INFO_FILE,
     DATA_FILE_PATH,
     base_path,
     CONFIG_JSON_PATH,
-    SERVICE_ACCOUNT_FILE,
-    theme
+    SERVICE_ACCOUNT_FILE
 )
 
 # Import utility functions for file I/O and Google Sheets synchronization
 from src.utils.file_io import read_applications_from_excel, save_applications_to_excel
 from src.utils.google_sheets import (
     read_from_google_sheets,
-    write_to_google_sheets,
-    delete_row_in_google_sheets,
+    write_to_google_sheets
 )
 
 # Import the centralized resource_path function from utils/utils.py
@@ -96,7 +93,6 @@ class AppTrackPro(TkinterDnD.Tk):  # Inherit from TkinterDnD.Tk for drag-and-dro
         # Initialize additional GUI components
         self.initialize_additional_gui()
 
-        # Load application data
         self.load_application_data()
 
         # Setup the main layout
@@ -189,9 +185,10 @@ class AppTrackPro(TkinterDnD.Tk):  # Inherit from TkinterDnD.Tk for drag-and-dro
     def load_application_data(self):
         """Loads application data from Applications.xlsx in AppData."""
         try:
-            self.applications_df = self.read_applications_from_excel(self.DATA_FILE_PATH)
+            self.applications_df = read_applications_from_excel(self.DATA_FILE_PATH)
         except Exception as e:
             print(f"Error: Could not read the Excel file from AppData. {str(e)}")
+            logging.error(f"Error: Could not read the Excel file from AppData. {str(e)}")
             self.applications_df = pd.DataFrame()
 
     def setup_main_layout(self):
@@ -1774,5 +1771,3 @@ class AppTrackPro(TkinterDnD.Tk):  # Inherit from TkinterDnD.Tk for drag-and-dro
 if __name__ == "__main__":
     app = AppTrackPro()
     app.mainloop()
-
-

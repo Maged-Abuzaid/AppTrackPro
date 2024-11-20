@@ -2,6 +2,10 @@ import logging
 import os
 from config.settings_manager import base_path
 from src.gui.main_window import AppTrackPro
+import tkinterdnd2
+import os
+
+print(tkinterdnd2.__file__)
 
 # Configure logging
 log_file_path = os.path.join(base_path, "apptrackpro.log")
