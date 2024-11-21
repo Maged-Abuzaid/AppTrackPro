@@ -18,6 +18,12 @@ jobs:
       with:
         python-version: 3.11
 
+    - name: Debug directory structure
+      run: dir
+
+    - name: Create missing directories
+      run: mkdir data || echo "data directory already exists"
+
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
